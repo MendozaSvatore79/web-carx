@@ -1,10 +1,16 @@
+import ReadyToJoinUs from '@/components/sections/joinUs'
+import OurProcess from '@/components/sections/ourProcess'
+import OurServices from '@/components/sections/ourServices'
+import ServicesCards from '@/components/sections/ourServicesCards'
 import React from 'react'
 
 export default function ServiciosPage() {
   return (
-    <div className="container mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold text-secondary mb-4">Nuestros Servicios</h1>
-      <p className="text-neutral">Gestión integral, recolección y disposición final de residuos peligrosos e industriales.</p>
-    </div>
+    <>
+      <OurServices/>
+      <ServicesCards/>
+      <OurProcess/>
+      <ReadyToJoinUs/>
+    </>
   )
 }

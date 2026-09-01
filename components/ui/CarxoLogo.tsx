@@ -7,6 +7,7 @@ interface CarxoLogoProps {
   size?: number | string
   animateOnHover?: boolean
   showText?: boolean
+  isStatic?: boolean
 }
 
 export default function CarxoLogo({
@@ -14,6 +15,7 @@ export default function CarxoLogo({
   size = 68,
   animateOnHover = true,
   showText = false,
+  isStatic = false,
 }: CarxoLogoProps) {
   const [isSpinning, setIsSpinning] = useState(false)
   const [animKey, setAnimKey] = useState(0)
@@ -22,6 +24,7 @@ export default function CarxoLogo({
   const lastScrollYRef = useRef(0)
 
   const triggerAnimation = useCallback(() => {
+    if (isStatic) return
     const now = Date.now()
     if (isSpinningRef.current || now - lastTriggerTimeRef.current < 2000) return
     
@@ -34,26 +37,29 @@ export default function CarxoLogo({
       isSpinningRef.current = false
       setIsSpinning(false)
     }, 1850)
-  }, [])
+  }, [isStatic])
 
   // 1. Animación suave al cargar la página
   useEffect(() => {
+    if (isStatic) return
     const timer = setTimeout(() => {
       triggerAnimation()
     }, 300)
     return () => clearTimeout(timer)
-  }, [triggerAnimation])
+  }, [triggerAnimation, isStatic])
 
   // 2. Animación periódica en reposo (cada 8 segundos)
   useEffect(() => {
+    if (isStatic) return
     const interval = setInterval(() => {
       triggerAnimation()
     }, 8000)
     return () => clearInterval(interval)
-  }, [triggerAnimation])
+  }, [triggerAnimation, isStatic])
 
   // 3. Animación instantánea al hacer Scroll, Rueda del Ratón (Wheel) o Touch
   useEffect(() => {
+    if (isStatic) return
     const handleScrollOrWheel = () => {
       const currentY = window.scrollY
       const delta = Math.abs(currentY - lastScrollYRef.current)
@@ -83,7 +89,7 @@ export default function CarxoLogo({
         if (animateOnHover) triggerAnimation()
       }}
       onClick={triggerAnimation}
-      title="Logotipo CARXO (Click para girar)"
+     
     >
       {/* Contenedor del icono SVG ampliado */}
       <div
@@ -114,10 +120,10 @@ export default function CarxoLogo({
           </defs>
 
           {/* =========================================================
-              1. BASE: Silueta de Engranaje con Túnel + 2 Chimeneas
+              1. BASE: Silueta de Engranaje con Túnel + 2 Chimeneas (Estática)
               ========================================================= */}
           <g
-            className={`carxo-svg-layer ${isSpinning ? 'animate-gear-spin-360' : ''}`}
+            className="carxo-svg-layer"
             style={{ transformOrigin: '104px 96px', transformBox: 'view-box' }}
           >
             {/* Silueta negra pura del engranaje y chimeneas */}
@@ -165,11 +171,11 @@ export default function CarxoLogo({
           </g>
 
           {/* =========================================================
-              2. FLAMA ROJA (#8A1B1B): Giro sincronizado y acomodo elástico
+              2. FLAMA ROJA (#8A1B1B): Llamarada viva con animación ascendente
               ========================================================= */}
           <g
             className={`carxo-svg-layer ${
-              isSpinning ? 'animate-flame-red-spin-dock' : 'carxo-flame-hover'
+              isSpinning ? 'animate-flame-red-flare' : 'carxo-flame-hover'
             }`}
             style={{ transformOrigin: '104px 96px', transformBox: 'view-box' }}
           >
@@ -186,11 +192,11 @@ export default function CarxoLogo({
           </g>
 
           {/* =========================================================
-              3. FLAMA AZUL (#0284c7): Giro con desfase de plasma y encaje
+              3. FLAMA AZUL (#0284c7): Llamarada viva con destello desfasado
               ========================================================= */}
           <g
             className={`carxo-svg-layer ${
-              isSpinning ? 'animate-flame-blue-spin-dock' : 'carxo-flame-hover-delayed'
+              isSpinning ? 'animate-flame-blue-flare' : 'carxo-flame-hover-delayed'
             }`}
             style={{ transformOrigin: '104px 96px', transformBox: 'view-box' }}
           >

@@ -20,241 +20,172 @@
    ========================================================================== */
 
 .carxo-svg-layer,
-.animate-gear-spin-360,
-.animate-flame-red-spin-dock,
-.animate-flame-blue-spin-dock,
+.animate-flame-red-flare,
+.animate-flame-blue-flare,
 .carxo-flame-hover,
 .carxo-flame-hover-delayed {
   transform-box: view-box !important;
   -webkit-transform-box: view-box !important;
   transform-origin: 104px 96px !important;
   -webkit-transform-origin: 104px 96px !important;
-  will-change: transform;
+  will-change: transform, filter;
 }
 
-/* 1. Base / Engranaje: Anticipación de resorte, aceleración suave y bloqueo preciso */
-.animate-gear-spin-360 {
-  animation: gearSpinOrbital 1.8s cubic-bezier(0.2, 0.85, 0.25, 1) forwards;
-  -webkit-animation: gearSpinOrbital 1.8s cubic-bezier(0.2, 0.85, 0.25, 1) forwards;
+/* 1. Flama Roja (#8A1B1B): Pulsación y llamarada ascendente sin rotación de base */
+.animate-flame-red-flare {
+  animation: flameRedFlare 1.4s ease-out forwards;
+  -webkit-animation: flameRedFlare 1.4s ease-out forwards;
 }
 
-@keyframes gearSpinOrbital {
+@keyframes flameRedFlare {
   0% {
-    transform: rotate(0deg) scale(1);
+    transform: translateY(0px) scale(1);
+    filter: drop-shadow(0 0 2px rgba(138, 27, 27, 0.4));
   }
-  8% {
-    transform: rotate(-10deg) scale(0.98);
-  }
-  28% {
-    transform: rotate(120deg) scale(1.02);
+  25% {
+    transform: translateY(-5px) scale(1.18);
+    filter: drop-shadow(0 0 12px rgba(185, 28, 28, 0.9));
   }
   60% {
-    transform: rotate(260deg) scale(1.01);
-  }
-  82% {
-    transform: rotate(366deg) scale(1.005);
-  }
-  92% {
-    transform: rotate(358deg) scale(0.995);
-  }
-  100% {
-    transform: rotate(360deg) scale(1);
-  }
-}
-
-@-webkit-keyframes gearSpinOrbital {
-  0% {
-    -webkit-transform: rotate(0deg) scale(1);
-  }
-  8% {
-    -webkit-transform: rotate(-10deg) scale(0.98);
-  }
-  28% {
-    -webkit-transform: rotate(120deg) scale(1.02);
-  }
-  60% {
-    -webkit-transform: rotate(260deg) scale(1.01);
-  }
-  82% {
-    -webkit-transform: rotate(366deg) scale(1.005);
-  }
-  92% {
-    -webkit-transform: rotate(358deg) scale(0.995);
-  }
-  100% {
-    -webkit-transform: rotate(360deg) scale(1);
-  }
-}
-
-/* 2. Flama Roja (#8A1B1B): Expansión de fuego, giro sincronizado con la chimenea */
-.animate-flame-red-spin-dock {
-  animation: flameRedOrbital 1.8s cubic-bezier(0.2, 0.85, 0.25, 1) forwards;
-  -webkit-animation: flameRedOrbital 1.8s cubic-bezier(0.2, 0.85, 0.25, 1) forwards;
-}
-
-@keyframes flameRedOrbital {
-  0% {
-    transform: rotate(0deg) scale(1);
-    filter: drop-shadow(0 0 1px rgba(138, 27, 27, 0.4));
-  }
-  8% {
-    transform: rotate(-12deg) scale(0.94);
-    filter: drop-shadow(0 0 2px rgba(138, 27, 27, 0.5));
-  }
-  28% {
-    transform: rotate(125deg) scale(1.22);
-    filter: drop-shadow(0 0 10px rgba(185, 28, 28, 0.85));
-  }
-  60% {
-    transform: rotate(265deg) scale(1.15);
+    transform: translateY(-2px) scale(1.08);
     filter: drop-shadow(0 0 8px rgba(185, 28, 28, 0.7));
   }
-  82% {
-    transform: rotate(370deg) scale(1.06);
-    filter: drop-shadow(0 0 4px rgba(185, 28, 28, 0.4));
-  }
-  92% {
-    transform: rotate(358deg) scale(0.985);
-  }
   100% {
-    transform: rotate(360deg) scale(1);
-    filter: drop-shadow(0 0 1px rgba(138, 27, 27, 0.4));
+    transform: translateY(0px) scale(1);
+    filter: drop-shadow(0 0 2px rgba(138, 27, 27, 0.4));
   }
 }
 
-@-webkit-keyframes flameRedOrbital {
+@-webkit-keyframes flameRedFlare {
   0% {
-    -webkit-transform: rotate(0deg) scale(1);
-    filter: drop-shadow(0 0 1px rgba(138, 27, 27, 0.4));
+    -webkit-transform: translateY(0px) scale(1);
+    filter: drop-shadow(0 0 2px rgba(138, 27, 27, 0.4));
   }
-  8% {
-    -webkit-transform: rotate(-12deg) scale(0.94);
-    filter: drop-shadow(0 0 2px rgba(138, 27, 27, 0.5));
-  }
-  28% {
-    -webkit-transform: rotate(125deg) scale(1.22);
-    filter: drop-shadow(0 0 10px rgba(185, 28, 28, 0.85));
+  25% {
+    -webkit-transform: translateY(-5px) scale(1.18);
+    filter: drop-shadow(0 0 12px rgba(185, 28, 28, 0.9));
   }
   60% {
-    -webkit-transform: rotate(265deg) scale(1.15);
+    -webkit-transform: translateY(-2px) scale(1.08);
     filter: drop-shadow(0 0 8px rgba(185, 28, 28, 0.7));
   }
-  82% {
-    -webkit-transform: rotate(370deg) scale(1.06);
-    filter: drop-shadow(0 0 4px rgba(185, 28, 28, 0.4));
-  }
-  92% {
-    -webkit-transform: rotate(358deg) scale(0.985);
-  }
   100% {
-    -webkit-transform: rotate(360deg) scale(1);
-    filter: drop-shadow(0 0 1px rgba(138, 27, 27, 0.4));
+    -webkit-transform: translateY(0px) scale(1);
+    filter: drop-shadow(0 0 2px rgba(138, 27, 27, 0.4));
   }
 }
 
-/* 3. Flama Azul (#0284c7): Estela con desfase de inercia y acople armónico */
-.animate-flame-blue-spin-dock {
-  animation: flameBlueOrbital 1.8s cubic-bezier(0.2, 0.85, 0.25, 1) forwards;
-  -webkit-animation: flameBlueOrbital 1.8s cubic-bezier(0.2, 0.85, 0.25, 1) forwards;
+/* 2. Flama Azul (#0284c7): Pulsación y destello desfasado */
+.animate-flame-blue-flare {
+  animation: flameBlueFlare 1.4s ease-out forwards;
+  -webkit-animation: flameBlueFlare 1.4s ease-out forwards;
 }
 
-@keyframes flameBlueOrbital {
+@keyframes flameBlueFlare {
   0% {
-    transform: rotate(0deg) scale(1);
-    filter: drop-shadow(0 0 1px rgba(2, 132, 199, 0.4));
-  }
-  10% {
-    transform: rotate(-15deg) scale(0.92);
-    filter: drop-shadow(0 0 2px rgba(2, 132, 199, 0.5));
+    transform: translateY(0px) scale(1);
+    filter: drop-shadow(0 0 2px rgba(2, 132, 199, 0.4));
   }
   30% {
-    transform: rotate(105deg) scale(1.28);
-    filter: drop-shadow(0 0 10px rgba(2, 132, 199, 0.85));
+    transform: translateY(-4px) scale(1.22);
+    filter: drop-shadow(0 0 12px rgba(2, 132, 199, 0.9));
   }
-  62% {
-    transform: rotate(245deg) scale(1.18);
-    filter: drop-shadow(0 0 8px rgba(2, 132, 199, 0.7));
-  }
-  85% {
-    transform: rotate(368deg) scale(1.05);
-    filter: drop-shadow(0 0 4px rgba(2, 132, 199, 0.4));
-  }
-  94% {
-    transform: rotate(358deg) scale(0.99);
+  65% {
+    transform: translateY(-1px) scale(1.06);
+    filter: drop-shadow(0 0 7px rgba(2, 132, 199, 0.6));
   }
   100% {
-    transform: rotate(360deg) scale(1);
-    filter: drop-shadow(0 0 1px rgba(2, 132, 199, 0.4));
+    transform: translateY(0px) scale(1);
+    filter: drop-shadow(0 0 2px rgba(2, 132, 199, 0.4));
   }
 }
 
-@-webkit-keyframes flameBlueOrbital {
+@-webkit-keyframes flameBlueFlare {
   0% {
-    -webkit-transform: rotate(0deg) scale(1);
-    filter: drop-shadow(0 0 1px rgba(2, 132, 199, 0.4));
-  }
-  10% {
-    -webkit-transform: rotate(-15deg) scale(0.92);
-    filter: drop-shadow(0 0 2px rgba(2, 132, 199, 0.5));
+    -webkit-transform: translateY(0px) scale(1);
+    filter: drop-shadow(0 0 2px rgba(2, 132, 199, 0.4));
   }
   30% {
-    -webkit-transform: rotate(105deg) scale(1.28);
-    filter: drop-shadow(0 0 10px rgba(2, 132, 199, 0.85));
+    -webkit-transform: translateY(-4px) scale(1.22);
+    filter: drop-shadow(0 0 12px rgba(2, 132, 199, 0.9));
   }
-  62% {
-    -webkit-transform: rotate(245deg) scale(1.18);
-    filter: drop-shadow(0 0 8px rgba(2, 132, 199, 0.7));
-  }
-  85% {
-    -webkit-transform: rotate(368deg) scale(1.05);
-    filter: drop-shadow(0 0 4px rgba(2, 132, 199, 0.4));
-  }
-  94% {
-    -webkit-transform: rotate(358deg) scale(0.99);
+  65% {
+    -webkit-transform: translateY(-1px) scale(1.06);
+    filter: drop-shadow(0 0 7px rgba(2, 132, 199, 0.6));
   }
   100% {
-    -webkit-transform: rotate(360deg) scale(1);
-    filter: drop-shadow(0 0 1px rgba(2, 132, 199, 0.4));
+    -webkit-transform: translateY(0px) scale(1);
+    filter: drop-shadow(0 0 2px rgba(2, 132, 199, 0.4));
   }
 }
 
-/* 4. Danza Orgánica en Reposo */
+/* 4. Danza Orgánica y Vistosa de las Flamas */
 .carxo-flame-hover {
-  animation: organicFlameWaveRed 3.4s ease-in-out infinite;
-  -webkit-animation: organicFlameWaveRed 3.4s ease-in-out infinite;
+  animation: organicFlameWaveRed 2.8s ease-in-out infinite;
+  -webkit-animation: organicFlameWaveRed 2.8s ease-in-out infinite;
 }
 
 .carxo-flame-hover-delayed {
-  animation: organicFlameWaveBlue 3.4s ease-in-out infinite;
-  -webkit-animation: organicFlameWaveBlue 3.4s ease-in-out infinite;
+  animation: organicFlameWaveBlue 2.8s ease-in-out infinite;
+  -webkit-animation: organicFlameWaveBlue 2.8s ease-in-out infinite;
 }
 
 @keyframes organicFlameWaveRed {
   0%, 100% {
     transform: translateY(0px) rotate(0deg) scale(1);
-    filter: drop-shadow(0 0 2px rgba(138, 27, 27, 0.3));
+    filter: drop-shadow(0 0 3px rgba(138, 27, 27, 0.4));
   }
   35% {
-    transform: translateY(-2.5px) rotate(-1.5deg) scale(1.04);
-    filter: drop-shadow(0 0 5px rgba(138, 27, 27, 0.5));
+    transform: translateY(-6px) rotate(-4deg) scale(1.16);
+    filter: drop-shadow(0 -3px 10px rgba(185, 28, 28, 0.85));
   }
   70% {
-    transform: translateY(-0.8px) rotate(1deg) scale(0.98);
-    filter: drop-shadow(0 0 3px rgba(138, 27, 27, 0.35));
+    transform: translateY(-2px) rotate(2deg) scale(1.02);
+    filter: drop-shadow(0 0 5px rgba(138, 27, 27, 0.5));
+  }
+}
+
+@-webkit-keyframes organicFlameWaveRed {
+  0%, 100% {
+    -webkit-transform: translateY(0px) rotate(0deg) scale(1);
+    filter: drop-shadow(0 0 3px rgba(138, 27, 27, 0.4));
+  }
+  35% {
+    -webkit-transform: translateY(-6px) rotate(-4deg) scale(1.16);
+    filter: drop-shadow(0 -3px 10px rgba(185, 28, 28, 0.85));
+  }
+  70% {
+    -webkit-transform: translateY(-2px) rotate(2deg) scale(1.02);
+    filter: drop-shadow(0 0 5px rgba(138, 27, 27, 0.5));
   }
 }
 
 @keyframes organicFlameWaveBlue {
   0%, 100% {
     transform: translateY(0px) rotate(0deg) scale(1);
-    filter: drop-shadow(0 0 2px rgba(2, 132, 199, 0.3));
+    filter: drop-shadow(0 0 3px rgba(2, 132, 199, 0.4));
   }
   45% {
-    transform: translateY(-2px) rotate(1.8deg) scale(1.05);
-    filter: drop-shadow(0 0 5px rgba(2, 132, 199, 0.5));
+    transform: translateY(-5px) rotate(4deg) scale(1.18);
+    filter: drop-shadow(0 -3px 10px rgba(2, 132, 199, 0.85));
   }
   80% {
-    transform: translateY(-0.6px) rotate(-1deg) scale(0.97);
-    filter: drop-shadow(0 0 3px rgba(2, 132, 199, 0.35));
+    transform: translateY(-1.5px) rotate(-2deg) scale(1.01);
+    filter: drop-shadow(0 0 5px rgba(2, 132, 199, 0.5));
+  }
+}
+
+@-webkit-keyframes organicFlameWaveBlue {
+  0%, 100% {
+    -webkit-transform: translateY(0px) rotate(0deg) scale(1);
+    filter: drop-shadow(0 0 3px rgba(2, 132, 199, 0.4));
+  }
+  45% {
+    -webkit-transform: translateY(-5px) rotate(4deg) scale(1.18);
+    filter: drop-shadow(0 -3px 10px rgba(2, 132, 199, 0.85));
+  }
+  80% {
+    -webkit-transform: translateY(-1.5px) rotate(-2deg) scale(1.01);
+    filter: drop-shadow(0 0 5px rgba(2, 132, 199, 0.5));
   }
 }

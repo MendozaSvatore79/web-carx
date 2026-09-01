@@ -6,18 +6,18 @@ import ClientsBar from '../components/sections/ClientsBar'
 import ServicesSection from '../components/sections/ServicesSection'
 import StatsSection from '../components/sections/StatsSection'
 import CoverageMapSection from '../components/sections/CoverageMapSection'
-
+import IndustralClients from '../components/sections/IndustrialClients'
+import ContactFormSection from '../components/sections/ContactFormSection'
 export default function Home() {
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.defaultMuted = true
-      videoRef.current.muted = true
-      videoRef.current.play().catch((err) => {
-        console.warn('Autoplay error:', err)
-      })
-    }
+    const video = containerRef.current?.querySelector('video')
+    if (!video) return
+
+    video.muted = true
+    video.defaultMuted = true
+    video.play().catch(() => {})
   }, [])
 
   const corporatePillars = [
@@ -57,26 +57,32 @@ export default function Home() {
           ======================================================== */}
       <section className="relative min-h-[calc(100vh-76px)] w-full flex flex-col justify-between items-center overflow-hidden py-12 sm:py-16">
         
-        {/* Video de fondo natural integrado */}
-        <div className="absolute inset-0 z-0 h-full w-full overflow-hidden">
-          <video
-            ref={videoRef}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            className="h-full w-full object-cover"
-          >
-            <source src="/banner.mp4" type="video/mp4" />
-          </video>
-
-          {/* Velo de luz natural continua */}
-          <div className="absolute inset-0 bg-white/40" />
-          
-          {/* Degradado vertical sutil */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/30 to-white/70" />
-        </div>
+        {/* Video de fondo natural integrado con atributos nativos para Safari */}
+        <div 
+          ref={containerRef}
+          className="absolute inset-0 z-0 h-full w-full overflow-hidden"
+          dangerouslySetInnerHTML={{
+            __html: `
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                webkit-playsinline
+                preload="auto"
+                class="h-full w-full object-cover"
+              >
+                <source src="/banner.mp4" type="video/mp4" />
+              </video>
+            `,
+          }}
+        />
+        
+        {/* Velo de luz natural continua */}
+        <div className="absolute inset-0 bg-white/40" />
+        
+        {/* Degradado vertical sutil */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/30 to-white/70" />
 
         {/* Contenido Central */}
         <div className="relative z-10 mx-auto max-w-5xl px-4 text-center flex flex-col items-center my-auto">
@@ -161,6 +167,16 @@ export default function Home() {
           5. SECCIÓN: MAPA INTERACTIVO DE COBERTURA Y RUTAS NACIONALES
           ======================================================== */}
       <CoverageMapSection />
+
+       {/* ========================================================
+          6. SECCIÓN: SOCIOS INDUSTRIALES
+          ======================================================== */}
+      <IndustralClients />
+
+      {/* ========================================================
+          7. SECCIÓN: FORMULARIO DE SOLICITUD DE EVALUACIÓN
+          ======================================================== */}
+      <ContactFormSection />
     </>
   )
 }
