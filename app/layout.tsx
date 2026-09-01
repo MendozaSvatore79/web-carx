@@ -5,7 +5,7 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "CARXO Multiservicios | Residuos Peligrosos",
+  title: "Carxo Multiservicios",
   description: "Logística y Gestión de Residuos Peligrosos con Seguridad Absoluta",
 };
 
